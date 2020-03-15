@@ -5,7 +5,7 @@ from tkinter import messagebox
 import sys
 
 # inputs in this window
-subcode, subname, subtype = None, None, None
+subcode = subname = subtype = None
 
 '''
     LIST OF FUNCTIONS USED FOR VARIOUS FUNCTIONS THROUGH TKinter INTERFACE
@@ -34,7 +34,7 @@ def update_treeview():
         tree.delete(row)
     cursor = conn.execute("SELECT * FROM SUBJECTS")
     for row in cursor:
-        print(row[0], row[1], row[2])
+        # print(row[0], row[1], row[2])
         if row[2] == 'T':
             t = 'Theory'
         elif row[2] == 'P':
@@ -73,10 +73,39 @@ def parse_data():
     subname_entry.delete("1.0", tk.END)
 
 
+
+def update_data():
+    subcode_entry.delete(0, tk.END)
+    subname_entry.delete("1.0", tk.END)
+    try:
+        # print(tree.selection())
+        if len(tree.selection()) > 1:
+            messagebox.showerror("Bad Select", "Select one subject at a time to update!")
+            return
+
+        row = tree.item(tree.selection()[0])['values']
+        subcode_entry.insert(0, row[0])
+        subname_entry.insert("1.0", row[1])
+        if row[2][0] == "T":
+            R1.select()
+        elif row[2][0] == "P":
+            R2.select()
+
+        conn.execute(f"DELETE FROM SUBJECTS WHERE SUBCODE = '{row[0]}'")
+        conn.commit()
+        update_treeview()
+
+    except IndexError:
+        messagebox.showerror("Bad Select", "Please select a subject from the list first!")
+        return
+
 # remove selected data from databse and treeview
 def remove_data():
+    if len(tree.selection()) < 1:
+        messagebox.showerror("Bad Select", "Please select a subject from the list first!")
+        return
     for i in tree.selection():
-        print(tree.item(i)['values'][0])
+        # print(tree.item(i)['values'][0])
         conn.execute(f"DELETE FROM SUBJECTS WHERE SUBCODE = '{tree.item(i)['values'][0]}'")
         conn.commit()
         tree.delete(i)
@@ -151,7 +180,7 @@ if __name__ == "__main__":
         width=11
     )
     subcode_entry.place(x=270, y=150)
-
+    
     # Label5
     tk.Label(
         subtk,
@@ -204,25 +233,34 @@ if __name__ == "__main__":
     # Button1
     B1 = tk.Button(
         subtk,
-        text='Add/Update Subject',
+        text='Add Subject',
         font=('Consolas', 12),
         command=parse_data
     )
     B1.place(x=150,y=350)
+
+    # Button2
+    B2 = tk.Button(
+        subtk,
+        text='Update Subject',
+        font=('Consolas', 12),
+        command=update_data
+    )
+    B2.place(x=410,y=350)
 
     # Treeview1
     tree = ttk.Treeview(subtk)
     create_treeview()
     update_treeview()
 
-    # Button2
-    B2 = tk.Button(
+    # Button3
+    B3 = tk.Button(
         subtk,
         text='Delete Subject(s)',
         font=('Consolas', 12),
         command=remove_data
     )
-    B2.place(x=650,y=350)
+    B3.place(x=650,y=350)
 
     # looping Tkiniter window
     subtk.mainloop()
