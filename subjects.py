@@ -12,6 +12,7 @@ subcode = subname = subtype = None
         * create_treeview()
         * update_treeview()
         * parse_data()
+        * update_data()
         * remove_data()
 '''
 
@@ -73,7 +74,7 @@ def parse_data():
     subname_entry.delete("1.0", tk.END)
 
 
-
+# update a row in the database
 def update_data():
     subcode_entry.delete(0, tk.END)
     subname_entry.delete("1.0", tk.END)
