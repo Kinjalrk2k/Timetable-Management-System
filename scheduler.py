@@ -21,6 +21,14 @@ def update_p(d, p, tree, parent):
             parent.destroy()
             return
         row = tree.item(tree.selection()[0])['values']
+        if row[0] == 'NULL' and row[1] == 'NULL':
+            conn.execute(f"DELETE FROM SCHEDULE WHERE ID='{section+str((d*periods)+p)}'")
+            conn.commit()
+            update_table()
+            parent.destroy()
+            return
+
+        conn.commit()
         print(row)
         conn.execute(f"REPLACE INTO SCHEDULE (ID, DAYID, PERIODID, SUBCODE, SECTION, FINI)\
             VALUES ('{section+str((d*periods)+p)}', {d}, {p}, '{row[1]}', '{section}', '{row[0]}')")
@@ -84,6 +92,7 @@ def process_button(d, p):
             0,
             values=(row[0],row[-1])
         )
+    tree.insert("", 0, value=('NULL', 'NULL'))
     tree.pack(pady=10, padx=30)
 
     tk.Button(
@@ -154,7 +163,7 @@ tk.Label(
 
 cursor = conn.execute("SELECT DISTINCT SECTION FROM STUDENT")
 sec_li = [row[0] for row in cursor]
-sec_li.insert(0, 'NULL')
+# sec_li.insert(0, 'NULL')
 print(sec_li)
 combo1 = ttk.Combobox(
     sec_select_f,
@@ -171,6 +180,7 @@ b = tk.Button(
     command=select_sec
 )
 b.pack(side=tk.LEFT, padx=10)
+b.invoke()
 
 table = tk.Frame(tt)
 table.pack()
