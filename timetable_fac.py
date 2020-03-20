@@ -30,10 +30,18 @@ def update_table(fini):
                 WHERE DAYID={i} AND PERIODID={j} AND FINI='{fini}'")
             cursor = list(cursor)
             print(cursor)
+            
             butt_grid[i][j]['bg'] = 'white'
-
             if len(cursor) != 0:
-                butt_grid[i][j]['bg'] = 'red'
+                subcode = cursor[0][1]
+                cur1 = conn.execute(F"SELECT SUBTYPE FROM SUBJECTS WHERE SUBCODE='{subcode}'")
+                cur1 = list(cur1)
+                subtype = cur1[0][0]
+                if subtype == 'T':
+                    butt_grid[i][j]['bg'] = 'green'
+                elif subtype == 'P':
+                    butt_grid[i][j]['bg'] = 'blue'
+
                 sec_li = [x[0] for x in cursor]
                 t = ', '.join(sec_li)
                 butt_grid[i][j]['text'] = "Sections: " + t

@@ -33,6 +33,15 @@ def update_table(sec):
             
             butt_grid[i][j]['bg'] = 'white'
             if len(cursor) != 0:
+                subcode = cursor[0][0]
+                cur1 = conn.execute(F"SELECT SUBTYPE FROM SUBJECTS WHERE SUBCODE='{subcode}'")
+                cur1 = list(cur1)
+                subtype = cur1[0][0]
+                if subtype == 'T':
+                    butt_grid[i][j]['bg'] = 'green'
+                elif subtype == 'P':
+                    butt_grid[i][j]['bg'] = 'blue'
+
                 butt_grid[i][j]['text'] = str(cursor[0][0]) + '\n' + str(cursor[0][1])
                 butt_grid[i][j].update()
                 print(i, j, cursor[0][0])
