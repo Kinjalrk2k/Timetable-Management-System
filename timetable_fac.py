@@ -30,6 +30,8 @@ def update_table(fini):
                 WHERE DAYID={i} AND PERIODID={j} AND FINI='{fini}'")
             cursor = list(cursor)
             print(cursor)
+            butt_grid[i][j]['bg'] = 'white'
+
             if len(cursor) != 0:
                 butt_grid[i][j]['bg'] = 'red'
                 sec_li = [x[0] for x in cursor]

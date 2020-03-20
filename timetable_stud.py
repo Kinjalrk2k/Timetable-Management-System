@@ -30,6 +30,8 @@ def update_table(sec):
                 WHERE DAYID={i} AND PERIODID={j} AND SECTION='{sec}'")
             cursor = list(cursor)
             print(cursor)
+            
+            butt_grid[i][j]['bg'] = 'white'
             if len(cursor) != 0:
                 butt_grid[i][j]['text'] = str(cursor[0][0]) + '\n' + str(cursor[0][1])
                 butt_grid[i][j].update()
