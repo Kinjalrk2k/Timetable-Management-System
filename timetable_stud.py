@@ -94,6 +94,8 @@ def process_button(d, p, sec):
 
 def student_tt_frame(tt, sec):
     global butt_grid
+    global section
+    section = sec
 
     table = tk.Frame(tt)
     table.pack()

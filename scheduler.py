@@ -7,6 +7,8 @@ days = 5
 periods = 6
 recess_break_aft = 3 # recess after 3rd Period
 section = None
+butt_grid = []
+
 
 period_names = list(map(lambda x: 'Period ' + str(x), range(1, 6+1)))
 day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday']
@@ -152,35 +154,6 @@ title_lab = tk.Label(
 )
 title_lab.pack()
 
-sec_select_f = tk.Frame(tt, pady=15)
-sec_select_f.pack()
-
-tk.Label(
-    sec_select_f,
-    text='Select section:  ',
-    font=('Consolas', 12, 'bold')
-).pack(side=tk.LEFT)
-
-cursor = conn.execute("SELECT DISTINCT SECTION FROM STUDENT")
-sec_li = [row[0] for row in cursor]
-# sec_li.insert(0, 'NULL')
-print(sec_li)
-combo1 = ttk.Combobox(
-    sec_select_f,
-    values=sec_li,
-)
-combo1.pack(side=tk.LEFT)
-combo1.current(0)
-
-b = tk.Button(
-    sec_select_f,
-    text="OK",
-    font=('Consolas', 12, 'bold'),
-    padx=10,
-    command=select_sec
-)
-b.pack(side=tk.LEFT, padx=10)
-b.invoke()
 
 table = tk.Frame(tt)
 table.pack()
@@ -232,8 +205,6 @@ for i in range(periods):
         relief='raised'
     )
 
-
-butt_grid = []
 for i in range(days):
     b = []
     for j in range(periods):
@@ -260,6 +231,35 @@ for i in range(days):
     butt_grid.append(b)
     # print(b)
     b = []
+sec_select_f = tk.Frame(tt, pady=15)
+sec_select_f.pack()
+
+tk.Label(
+    sec_select_f,
+    text='Select section:  ',
+    font=('Consolas', 12, 'bold')
+).pack(side=tk.LEFT)
+
+cursor = conn.execute("SELECT DISTINCT SECTION FROM STUDENT")
+sec_li = [row[0] for row in cursor]
+# sec_li.insert(0, 'NULL')
+print(sec_li)
+combo1 = ttk.Combobox(
+    sec_select_f,
+    values=sec_li,
+)
+combo1.pack(side=tk.LEFT)
+combo1.current(0)
+
+b = tk.Button(
+    sec_select_f,
+    text="OK",
+    font=('Consolas', 12, 'bold'),
+    padx=10,
+    command=select_sec
+)
+b.pack(side=tk.LEFT, padx=10)
+b.invoke()
 
 
 print(butt_grid[0][1], butt_grid[1][1])
