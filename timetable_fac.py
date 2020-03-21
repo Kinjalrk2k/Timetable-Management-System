@@ -101,6 +101,14 @@ def process_button(d, p):
 
 
 def fac_tt_frame(tt, f):
+    title_lab = tk.Label(
+        tt,
+        text='T  I  M  E  T  A  B  L  E',
+        font=('Consolas', 20, 'bold'),
+        pady=5
+    )
+    title_lab.pack()
+
     global butt_grid
     global fini
     fini = f
@@ -193,14 +201,6 @@ if __name__ == "__main__":
     # connecting database
 
     tt = tk.Tk()
-
-    title_lab = tk.Label(
-        tt,
-        text='T  I  M  E  T  A  B  L  E',
-        font=('Consolas', 20, 'bold'),
-        pady=5
-    )
-    title_lab.pack()
 
     fac_tt_frame(tt, fini)
 

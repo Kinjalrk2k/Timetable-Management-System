@@ -105,6 +105,14 @@ def process_button(d, p, sec):
 
 
 def student_tt_frame(tt, sec):
+    title_lab = tk.Label(
+        tt,
+        text='T  I  M  E  T  A  B  L  E',
+        font=('Consolas', 20, 'bold'),
+        pady=5
+    )
+    
+    title_lab.pack()
     global butt_grid
     global section
     section = sec
@@ -197,14 +205,6 @@ if __name__ == "__main__":
     # connecting database
 
     tt = tk.Tk()
-
-    title_lab = tk.Label(
-        tt,
-        text='T  I  M  E  T  A  B  L  E',
-        font=('Consolas', 20, 'bold'),
-        pady=5
-    )
-    title_lab.pack()
 
     student_tt_frame(tt, section)
 
