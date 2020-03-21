@@ -48,6 +48,7 @@ def update_table(fini):
                 butt_grid[i][j]['text'] = "Sections: " + t
                 print(i, j, cursor[0][0])
             else:
+                butt_grid[i][j]['fg'] = 'black'
                 butt_grid[i][j]['text'] = "No Class"
                 butt_grid[i][j].update()
 
