@@ -112,6 +112,7 @@ def student_tt_frame(tt, sec):
         font=('Consolas', 20, 'bold'),
         pady=5
     )
+    title_lab.pack()
 
     legend_f = tk.Frame(tt)
     legend_f.pack(pady=15)
@@ -141,7 +142,6 @@ def student_tt_frame(tt, sec):
         height=2
     ).pack(side=tk.LEFT, padx=10)
     
-    title_lab.pack()
     global butt_grid
     global section
     section = sec
