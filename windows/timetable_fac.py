@@ -110,6 +110,34 @@ def fac_tt_frame(tt, f):
     )
     title_lab.pack()
 
+    legend_f = tk.Frame(tt)
+    legend_f.pack(pady=15)
+    tk.Label(
+        legend_f,
+        text='Legend: ',
+        font=('Consolas', 10, 'italic')
+    ).pack(side=tk.LEFT)
+
+    tk.Label(
+        legend_f,
+        text='Theory Classes',
+        bg='green',
+        fg='white',
+        relief='raised',
+        font=('Consolas', 10, 'italic'),
+        height=2
+    ).pack(side=tk.LEFT, padx=10)
+
+    tk.Label(
+        legend_f,
+        text='Practical Classes',
+        bg='blue',
+        fg='white',
+        relief='raised',
+        font=('Consolas', 10, 'italic'),
+        height=2
+    ).pack(side=tk.LEFT, padx=10)
+
     global butt_grid
     global fini
     fini = f
