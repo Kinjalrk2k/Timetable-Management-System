@@ -143,8 +143,12 @@ def remove_data():
 def show_passw():
     if passw_entry['show'] == "●":
         passw_entry['show'] = ""
+        B1_show['text'] = '●'
+        B1_show.update()
     elif passw_entry['show'] == "":
         passw_entry['show'] = "●"
+        B1_show['text'] = '○'
+        B1_show.update()
     passw_entry.update()
 
 
@@ -239,7 +243,7 @@ if __name__ == "__main__":
 
     B1_show = tk.Button(
         subtk,
-        text='\U00000398',
+        text='○',
         font=('Consolas', 9, 'bold'),
         command=show_passw
     )
