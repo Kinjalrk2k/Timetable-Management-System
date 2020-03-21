@@ -3,12 +3,12 @@ import sys
 import os
 import threading
 
-def run_sub(): os.system('pythonw subjects.py')
-def run_fac(): os.system('pythonw faculty.py')
-def run_stud(): os.system('pythonw student.py')
-def run_sch(): os.system('pythonw scheduler.py')
-def run_tt_s(): os.system('pythonw timetable_stud.py')
-def run_tt_f(): os.system('pythonw timetable_fac.py')
+def run_sub(): os.system('pythonw windows\\subjects.py')
+def run_fac(): os.system('pythonw windows\\faculty.py')
+def run_stud(): os.system('pythonw windows\\student.py')
+def run_sch(): os.system('pythonw windows\\scheduler.py')
+def run_tt_s(): os.system('pythonw windows\\timetable_stud.py')
+def run_tt_f(): os.system('pythonw windows\\timetable_fac.py')
 
 ad = tk.Tk()
 ad.geometry('500x430')
