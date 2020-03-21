@@ -12,7 +12,7 @@ def challenge():
 
     user = str(combo1.get())
     if user == "Student":
-        cursor = conn.execute(f"SELECT PASSW, SECTION FROM STUDENT WHERE SID='{id_entry.get()}'")
+        cursor = conn.execute(f"SELECT PASSW, SECTION, NAME, ROLL FROM STUDENT WHERE SID='{id_entry.get()}'")
         cursor = list(cursor)
         if len(cursor) == 0:
             messagebox.showwarning('Bad id', 'No such user found!')
@@ -20,12 +20,17 @@ def challenge():
             messagebox.showerror('Bad pass', 'Incorret Password!')
         else:
             nw = tk.Tk()
+            tk.Label(
+                nw,
+                text=f'{cursor[0][2]}\tSection: {cursor[0][1]}\tRoll No.: {cursor[0][3]}',
+                font=('Consolas', 12, 'italic'),
+            ).pack()
             m.destroy()
             timetable_stud.student_tt_frame(nw, cursor[0][1])
             nw.mainloop()
 
     elif user == "Faculty":
-        cursor = conn.execute(f"SELECT PASSW, INI FROM FACULTY WHERE FID='{id_entry.get()}'")
+        cursor = conn.execute(f"SELECT PASSW, INI, NAME, EMAIL FROM FACULTY WHERE FID='{id_entry.get()}'")
         cursor = list(cursor)
         if len(cursor) == 0:
             messagebox.showwarning('Bad id', 'No such user found!')
@@ -33,6 +38,11 @@ def challenge():
             messagebox.showerror('Bad pass', 'Incorret Password!')
         else:
             nw = tk.Tk()
+            tk.Label(
+                nw,
+                text=f'{cursor[0][2]} ({cursor[0][1]})\tEmail: {cursor[0][3]}',
+                font=('Consolas', 12, 'italic'),
+            ).pack()
             m.destroy()
             timetable_fac.fac_tt_frame(nw, cursor[0][1])
             nw.mainloop()
