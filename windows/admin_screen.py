@@ -13,6 +13,7 @@ def run_tt_f(): os.system('pythonw windows\\timetable_fac.py')
 ad = tk.Tk()
 ad.geometry('500x430')
 
+ad.title('Administrator')
 
 tk.Label(
     ad,

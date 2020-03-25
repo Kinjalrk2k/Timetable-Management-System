@@ -230,6 +230,7 @@ if __name__ == "__main__":
     # connecting database
 
     tt = tk.Tk()
+    tt.title('Faculty Timetable')
 
     fac_tt_frame(tt, fini)
 

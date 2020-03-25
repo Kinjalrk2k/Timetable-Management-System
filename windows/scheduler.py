@@ -146,6 +146,8 @@ FINI CHAR(10) NOT NULL)')
 
 tt = tk.Tk()
 
+tt.title('Scheduler')
+
 title_lab = tk.Label(
     tt,
     text='T  I  M  E  T  A  B  L  E',

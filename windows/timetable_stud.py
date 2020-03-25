@@ -234,6 +234,8 @@ if __name__ == "__main__":
     # connecting database
 
     tt = tk.Tk()
+    tt.title('Student Timetable')
+
 
     student_tt_frame(tt, section)
 

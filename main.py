@@ -60,6 +60,7 @@ def challenge():
 m = tk.Tk()
 
 m.geometry('400x430')
+m.title('Welcome')
 
 tk.Label(
     m,
